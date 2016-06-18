@@ -1,4 +1,5 @@
-# Using the schema compiler
+Using the schema compiler    {#flatbuffers_guide_using_schema_compiler}
+=========================
 
 Usage:
 
@@ -6,12 +7,11 @@ Usage:
           [ -- FILES...]
 
 The files are read and parsed in order, and can contain either schemas
-or data (see below). Later files can make use of definitions in earlier
-files.
+or data (see below). Data files are processed according to the definitions of
+the most recent schema specified.
 
 `--` indicates that the following files are binary files in
-FlatBuffer format conforming to the schema(s) indicated before it.
-Incompatible binary files currently will give unpredictable results (!)
+FlatBuffer format conforming to the schema indicated before it.
 
 Depending on the flags passed, additional files may
 be generated for each file processed:
@@ -80,6 +80,11 @@ Additional options:
     FlatBuffers in-place.
 
 -   `--gen-onefile` :  Generate single output file (useful for C#)
+
+-   `--gen-all`: Generate not just code for the current schema files, but
+    for all files it includes as well. If the language uses a single file for
+    output (by default the case for C++ and JS), all code will end up in
+    this one file.
 
 -   `--raw-binary` : Allow binaries without a file_indentifier to be read.
     This may crash flatc given a mismatched schema.
